@@ -1,0 +1,23 @@
+# macOS
+.DS_Store
+
+# Word lock files
+~$*.docx
+~$*.doc
+
+# Personal documents (not to be published)
+函-顏師公假-已簽核.pdf
+
+# Claude Code workspace config (per-machine)
+.claude/
+
+# Editor backups
+*~
+\#*\#
+.#*
+
+# Build/cache artifacts
+*.bak
+
+# 別人的論文檔（不應公開）
+images/Thesis-0402-7.doc
