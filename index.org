@@ -11,8 +11,8 @@
 #+OPTIONS: toc:2 ^:nil num:5
 #+OPTIONS: H:4
 #+LATEX:\newpage
-#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../../../notes/css/muse.css" />
-#+HTML_HEAD_EXTRA: <script src="../../../notes/css/copy_code.js"></script>
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/letranger/css@main/muse.css" />
+#+HTML_HEAD_EXTRA: <script src="https://cdn.jsdelivr.net/gh/letranger/css@main/copy_code.js"></script>
 
 * 研習資訊
 
