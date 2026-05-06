@@ -1,0 +1,692 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI 走進閱讀課——從陪聊到動手</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reset.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- ============================================================
+           1. COVER
+           ============================================================ -->
+      <section id="cover" class="cover">
+        <div class="content">
+          <div class="author">YUNG CHIN, YEN&nbsp;&nbsp;/&nbsp;&nbsp;TNFSH</div>
+          <div style="margin-top: 100px;">
+            <h1>AI 走進閱讀課</h1>
+            <div class="accent-line"></div>
+            <div class="subtitle">從陪聊到動手</div>
+          </div>
+          <div class="meta">
+            115 精進計畫｜高雄市輔導團研習<br>
+            2026.05.07
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           2. OUTLINE
+           ============================================================ -->
+      <section id="outline">
+        <h2>今天會走過</h2>
+        <div class="content">
+          <div style="display: grid; grid-template-columns: 60px 1fr; gap: 20px 30px; margin-top: 20px;">
+            <div class="text-3xl text-orange font-bold">01</div>
+            <div>
+              <div class="text-2xl font-bold">今天要做什麼？</div>
+              <div class="text-muted text-lg">主題素材：橋頭糖廠</div>
+            </div>
+
+            <div class="text-3xl text-orange font-bold">02</div>
+            <div>
+              <div class="text-2xl font-bold">AI 使用的五個層次</div>
+              <div class="text-muted text-lg">Lv.1 → Lv.5</div>
+            </div>
+
+            <div class="text-3xl text-orange font-bold">03</div>
+            <div>
+              <div class="text-2xl font-bold">PART #1 實作</div>
+              <div class="text-muted text-lg">NotebookLM → Napkin → Claude → Claude</div>
+            </div>
+
+            <div class="text-3xl text-orange font-bold">04</div>
+            <div>
+              <div class="text-2xl font-bold">PART #2 模型、代理人與你</div>
+              <div class="text-muted text-lg">Skill / Gemini CLI / 概念</div>
+            </div>
+
+            <div class="text-3xl text-orange font-bold">05</div>
+            <div>
+              <div class="text-2xl font-bold">綜合座談</div>
+              <div class="text-muted text-lg">Q&amp;A</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           3. PART #1 DIVIDER
+           ============================================================ -->
+      <section id="part1-divider" class="section-divider" data-state="is-section-divider">
+        <h1>PART <span class="text-orange">#1</span></h1>
+        <p>實作——從陪聊到動手</p>
+      </section>
+
+      <!-- ============================================================
+           4. 主題素材
+           ============================================================ -->
+      <section id="theme">
+        <div class="section-tag">PART #1</div>
+        <h2>今天要做什麼？</h2>
+        <div class="content">
+          <div class="text-xl text-muted" style="margin-bottom: 8px;">主題素材</div>
+          <div class="text-4xl text-green font-bold" style="margin-bottom: 30px;">橋頭糖廠</div>
+          <div class="text-xl text-muted" style="margin-bottom: 30px;">— 台灣第一座新式糖廠（1901）</div>
+          <p class="text-lg">
+            老師走完一次「AI 輔助備課」流程，產出一份完整教案。<br>
+            今天的主題只是例子——同一套流程可以套到任何閱讀素養單元：<br>
+            <span class="text-muted">〈背影〉、〈兒時記趣〉、左營眷村、美濃水圳……</span>
+          </p>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           5. 四步流程
+           ============================================================ -->
+      <section id="four-steps">
+        <div class="section-tag">PART #1</div>
+        <h2>四步流程</h2>
+        <div class="content">
+          <p class="text-muted text-lg" style="margin-bottom: 25px;">Claude 用兩次但每次聚焦——專為免費版 token 額度設計</p>
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px;">
+            <div class="stage-card">
+              <div class="stage-char">讀</div>
+              <div class="stage-tool">NotebookLM</div>
+              <div class="stage-output">研究筆記＋參考文獻</div>
+            </div>
+            <div class="stage-card green">
+              <div class="stage-char">畫</div>
+              <div class="stage-tool">Napkin × 2</div>
+              <div class="stage-output">因果圖＋時間軸</div>
+            </div>
+            <div class="stage-card">
+              <div class="stage-char">學</div>
+              <div class="stage-tool">Claude</div>
+              <div class="stage-output">學生用學習單</div>
+            </div>
+            <div class="stage-card green">
+              <div class="stage-char">教</div>
+              <div class="stage-tool">Claude</div>
+              <div class="stage-output">完整教案（含內嵌圖）</div>
+            </div>
+          </div>
+          <p class="text-lg" style="margin-top: 30px;">
+            一小時後你手上會有：<strong>研究筆記＋兩張圖＋學習單＋教案</strong>。<br>
+            <span class="text-muted">學習單是學生拿在手上做的，教案是你自己上課用的。</span>
+          </p>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           6. 為什麼挑橋頭糖廠
+           ============================================================ -->
+      <section id="why-bridgehead">
+        <div class="section-tag">PART #1</div>
+        <h2>為什麼挑「橋頭糖廠」？</h2>
+        <div class="content">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px 30px; margin-top: 20px;">
+            <div class="callout callout-orange">
+              <div class="text-xl font-bold">高雄在地連結最強</div>
+              <div class="text-muted">就在高雄市橋頭區，搭高捷紅線就到</div>
+            </div>
+            <div class="callout callout-orange">
+              <div class="text-xl font-bold">直接對應 108 課綱</div>
+              <div class="text-muted">國中歷史八上「日治時期經濟發展」</div>
+            </div>
+            <div class="callout callout-green">
+              <div class="text-xl font-bold">跨領域閱讀素材</div>
+              <div class="text-muted">歷史、公民、國文都能用，可拉社會老師共備</div>
+            </div>
+            <div class="callout callout-green">
+              <div class="text-xl font-bold">公開素材豐富</div>
+              <div class="text-muted">維基、台糖官網、地方文史，NotebookLM 餵得進來</div>
+            </div>
+          </div>
+          <blockquote style="margin-top: 35px;">
+            對比衝擊強——課本／旅遊文宣寫的是「百年糖業」，史料寫的是「甘蔗農抗爭、剝削、林本源製糖會社事件」。
+            <cite>這個落差正好可以練「文宣表面 vs 史料真相」的批判閱讀</cite>
+          </blockquote>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           7. AI 五個層次
+           ============================================================ -->
+      <section id="five-levels">
+        <div class="section-tag">概念</div>
+        <h2>AI 使用的五個層次</h2>
+        <div class="content">
+          <p class="text-lg text-muted">今天直接帶你走到 <strong>Lv.4</strong>——你要學的不是某一個工具，是「怎麼把 AI 編進備課流程」</p>
+          <table style="margin-top: 15px;">
+            <thead>
+              <tr><th style="width: 100px;">層級</th><th>做法</th><th>代表工具</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>Lv.1</strong></td><td>問答機 — prompt → copy → paste</td><td class="text-muted">ChatGPT 網頁版</td></tr>
+              <tr><td><strong>Lv.2</strong></td><td>整合工作流 — 串接各種 AI 服務</td><td class="text-muted">NotebookLM + Napkin + Claude</td></tr>
+              <tr><td><strong style="color: #1E941F;">Lv.3</strong></td><td><em>初級助理</em> — AI 規劃步驟、操作電腦</td><td class="text-muted">Claude Code、Gemini CLI</td></tr>
+              <tr><td><strong>Lv.4</strong></td><td><strong>進階助理</strong> — 你訂規則、AI 一直照做</td><td class="text-muted">Claude Skill、n8n</td></tr>
+              <tr><td><strong>Lv.5</strong></td><td>專屬助理 — AI 規劃步驟＋操作電腦</td><td class="text-muted">OpenClaw、Hermes</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           8. 逆向設計 UbD
+           ============================================================ -->
+      <section id="ubd">
+        <div class="section-tag">方法</div>
+        <h2>逆向設計（Backward Design）</h2>
+        <div class="content">
+          <p class="text-muted">Wiggins &amp; McTighe，<em>Understanding by Design</em>（1998）</p>
+          <p class="text-lg" style="margin-top: 20px;">
+            先決定「<strong>學生上完這堂課要會什麼</strong>」，再倒推每一步：
+          </p>
+          <div style="margin-top: 15px;">
+            <div style="padding: 8px 0; border-left: 3px solid #FF5D03; padding-left: 16px; margin: 6px 0;">
+              學生最終要會的事 = <strong>做完一份學習單</strong>（Step 3）
+            </div>
+            <div style="padding: 8px 0; border-left: 3px solid #FF5D03; padding-left: 16px; margin: 6px 0;">
+              要產出學習單 → 前面要有 <strong>研究筆記</strong>
+            </div>
+            <div style="padding: 8px 0; border-left: 3px solid #FF5D03; padding-left: 16px; margin: 6px 0;">
+              要有完整教案 → 前面要 <strong>先有學習單</strong>（教案的目標就是讓學生做完這份）
+            </div>
+            <div style="padding: 8px 0; border-left: 3px solid #FF5D03; padding-left: 16px; margin: 6px 0;">
+              要有教案的視覺輔助 → 前面要有 <strong>兩張圖</strong>
+            </div>
+          </div>
+          <p class="text-xl text-green font-bold text-center" style="margin-top: 30px;">
+            從終點往回排——AI 不是替你決定要去哪，是你決定了之後，AI 替你跑完路線。
+          </p>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           9. Step 1: NotebookLM
+           ============================================================ -->
+      <section id="step1">
+        <div class="section-tag">STEP 1</div>
+        <h2>NotebookLM——讀懂課文＋產出研究筆記</h2>
+        <div class="content">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+            <div>
+              <div class="step-badge">操作</div>
+              <ol class="text-lg">
+                <li>上傳 5 個橋頭糖廠素材（網址或 PDF）</li>
+                <li>依序問 4 個問題：大方向 → 細節 → 文宣 vs 史料 → 教學切入</li>
+                <li>要求打包成「研究筆記」（含參考文獻、Napkin 用條列）</li>
+              </ol>
+            </div>
+            <div>
+              <div class="step-badge green">老師人工檢視</div>
+              <ul class="text-lg">
+                <li>讀一遍，刪掉錯的</li>
+                <li><strong>核對出處編號</strong>（NotebookLM 會錯亂）</li>
+                <li>砍掉重複（順便省 token）</li>
+                <li>補旁註（教學判斷）</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout callout-green" style="margin-top: 25px;">
+            <strong>這一步是整套流程中老師價值最高的環節。</strong> AI 給的是「資料整合」，不是「教學判斷」——後者只有老師會。
+          </div>
+        </div>
+        <div class="footnote">研習現場示範時，刻意慢下來做這一步——讓老師看到「AI 不會替你做的判斷」具體長什麼樣</div>
+      </section>
+
+      <!-- ============================================================
+           10. Step 2: Napkin
+           ============================================================ -->
+      <section id="step2">
+        <div class="section-tag">STEP 2</div>
+        <h2>Napkin——畫兩張視覺化圖</h2>
+        <div class="content">
+          <p class="text-muted text-lg">從研究筆記第七節複製貼上——NotebookLM 已經幫你寫好兩段條列</p>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-top: 20px;">
+            <div class="box-orange">
+              <div class="text-xl font-bold text-orange">圖 1｜選址因果關係圖</div>
+              <p class="text-muted" style="margin: 10px 0;">5-6 條原因：</p>
+              <ul style="font-size: 14pt;">
+                <li>自然條件（水源、氣候、地勢）</li>
+                <li>交通條件（高雄港、鐵路）</li>
+                <li>政策推動（製糖獎勵規則）</li>
+                <li>企業考量（鈴木藤三郎勘察）</li>
+                <li>戰略需求（日俄戰爭前夕）</li>
+              </ul>
+            </div>
+            <div class="box-green">
+              <div class="text-xl font-bold text-green">圖 2｜橋頭糖廠時間軸</div>
+              <p class="text-muted" style="margin: 10px 0;">5-7 個節點：</p>
+              <ul style="font-size: 14pt;">
+                <li>1901 設廠</li>
+                <li>1902 機械製糖運轉</li>
+                <li>1925 蔗農抗爭</li>
+                <li>1945 台糖接收</li>
+                <li>1999 停止製糖</li>
+                <li>2006 文化園區</li>
+              </ul>
+            </div>
+          </div>
+          <p class="text-muted" style="margin-top: 20px;">→ 兩張 PNG 下載到桌面，待會 Step 4 上傳給 Claude 嵌入教案</p>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           11. Step 3: 學習單
+           ============================================================ -->
+      <section id="step3">
+        <div class="section-tag">STEP 3</div>
+        <h2>Claude——生簡單學習單</h2>
+        <div class="content">
+          <p class="text-muted text-lg"><strong>UbD Stage 1</strong>：先決定學生最終要會什麼，是整套教案的目標終點</p>
+          <div class="callout callout-orange" style="margin: 20px 0;">
+            <strong>為什麼學習單先做？</strong> 如果先寫教案、後做學習單，常出現「教案漂亮、學習單對不上」的問題。倒過來做，邏輯一致、活動聚焦。
+          </div>
+          <div style="display: grid; grid-template-columns: 120px 1fr 1.5fr; gap: 12px 25px; margin-top: 20px; font-size: 18pt; align-items: center;">
+            <div class="text-orange font-bold">Part 1</div>
+            <div class="font-bold">暖身題 × 1</div>
+            <div class="text-muted">連結學生生命經驗</div>
+
+            <div class="text-orange font-bold">Part 2</div>
+            <div class="font-bold">精讀題 × 5</div>
+            <div class="text-muted">事實 2 / 推論 2 / 評價 1</div>
+
+            <div class="text-orange font-bold">Part 3</div>
+            <div class="font-bold">小組討論 × 1</div>
+            <div class="text-muted">文宣 vs 史料對照</div>
+
+            <div class="text-orange font-bold">Part 4</div>
+            <div class="font-bold">延伸寫作 × 1</div>
+            <div class="text-muted">給能力較強的學生</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           12. Step 4: 教案（壓軸）
+           ============================================================ -->
+      <section id="step4">
+        <div class="section-tag green">STEP 4 — 壓軸</div>
+        <h2>Claude——倒推設計教案</h2>
+        <div class="content">
+          <p class="text-muted text-lg"><strong>UbD Stage 3</strong>：以「能完成學習單」為目標倒推教學流程</p>
+
+          <div class="box-green" style="margin-top: 20px;">
+            <div class="text-xl font-bold">上傳四個檔案</div>
+            <div class="text-lg" style="margin-top: 8px;">
+              研究筆記 + 兩張 PNG + 學習單 + 教案範本（兒時記趣）
+            </div>
+          </div>
+
+          <p class="text-lg" style="margin-top: 20px;">Claude 同時做四件事：</p>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 10px;">
+            <div><span class="text-green">✓</span> <strong>讀學習單</strong>，反推學生要會什麼</div>
+            <div><span class="text-green">✓</span> <strong>抽範本格式結構</strong></div>
+            <div><span class="text-green">✓</span> <strong>設計教學流程</strong>，每段對應到學習單</div>
+            <div><span class="text-green">✓</span> <strong>把兩張 PNG 直接嵌進 docx</strong></div>
+          </div>
+
+          <blockquote style="margin-top: 25px;">
+            「我按下送出，下次再碰電腦的時候，已經是下載完成的教案 .docx 了。」
+            <cite>—— 這就是 Lv.3 + UbD 的真貌</cite>
+          </blockquote>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           13. Token 急救
+           ============================================================ -->
+      <section id="token-emergency">
+        <div class="section-tag">風險與備案</div>
+        <h2>如果撞牆怎麼辦？</h2>
+        <div class="content">
+          <p class="text-muted text-lg">出現 "Get Pro" 或 "This response didn't load" 時，由輕到重四層 fallback：</p>
+          <div style="margin-top: 20px;">
+            <div style="display: grid; grid-template-columns: 60px 1fr 1.4fr; gap: 20px; align-items: center; padding: 14px 0; border-bottom: 1px solid #e1e5eb;">
+              <div class="text-3xl text-orange font-bold">1</div>
+              <div class="text-xl font-bold">切換到 Haiku 4.5</div>
+              <div class="text-muted">同帳號、同對話、最常奏效（成本是 Sonnet 的 1/3-1/5）</div>
+            </div>
+            <div style="display: grid; grid-template-columns: 60px 1fr 1.4fr; gap: 20px; align-items: center; padding: 14px 0; border-bottom: 1px solid #e1e5eb;">
+              <div class="text-3xl text-orange font-bold">2</div>
+              <div class="text-xl font-bold">關掉舊對話、開新對話</div>
+              <div class="text-muted">避免繼承過長對話歷史，input token 從 0 累積</div>
+            </div>
+            <div style="display: grid; grid-template-columns: 60px 1fr 1.4fr; gap: 20px; align-items: center; padding: 14px 0; border-bottom: 1px solid #e1e5eb;">
+              <div class="text-3xl text-orange font-bold">3</div>
+              <div class="text-xl font-bold">退到 Gemini</div>
+              <div class="text-muted">免費 Gemini 2.5 Pro 容量更寬，prompt 完全相容</div>
+            </div>
+            <div style="display: grid; grid-template-columns: 60px 1fr 1.4fr; gap: 20px; align-items: center; padding: 14px 0;">
+              <div class="text-3xl text-orange font-bold">4</div>
+              <div class="text-xl font-bold">退到複製貼上</div>
+              <div class="text-muted">把素材貼進對話框，比 fetch 省 token</div>
+            </div>
+          </div>
+          <p class="text-green font-bold" style="margin-top: 18px;">
+            切換順序的精神：盡量留在原工具——切 Haiku 比換對話順、換對話比換工具順。
+          </p>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           14. 本日回顧（Part 1 收尾）
+           ============================================================ -->
+      <section id="part1-recap">
+        <div class="section-tag">PART #1</div>
+        <h2>本日回顧</h2>
+        <div class="content">
+          <div style="display: grid; grid-template-columns: 100px 1fr; gap: 18px 30px; margin-top: 15px; align-items: center; font-size: 18pt;">
+            <div class="text-3xl text-orange font-bold text-center">讀</div>
+            <div>NotebookLM 研究筆記＋完整參考文獻（Word）</div>
+
+            <div class="text-3xl text-green font-bold text-center">畫</div>
+            <div>Napkin 因果關係圖＋時間軸（兩張 PNG）</div>
+
+            <div class="text-3xl text-orange font-bold text-center">學</div>
+            <div>Claude 學生用學習單（Word）</div>
+
+            <div class="text-3xl text-green font-bold text-center">教</div>
+            <div>Claude 跨領域閱讀教案（Word，含內嵌圖、對應學習單）</div>
+          </div>
+          <p class="text-lg" style="margin-top: 30px;">
+            一小時前你還在煩這個跨領域主題怎麼上，<strong>現在你下週的課已經備完。</strong>
+          </p>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           15. PART #2 DIVIDER
+           ============================================================ -->
+      <section id="part2-divider" class="section-divider" data-state="is-section-divider">
+        <h1>PART <span class="text-orange">#2</span></h1>
+        <p>模型、代理人與你</p>
+      </section>
+
+      <!-- ============================================================
+           16. Section 1: Skill (Lv.4)
+           ============================================================ -->
+      <section id="section1-skill">
+        <div class="section-tag">SECTION 1 — Lv.4</div>
+        <h2>Prompt 是封信，Skill 是 SOP</h2>
+        <div class="content">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 15px;">
+            <div class="box-outlined">
+              <div class="text-xl text-muted font-bold" style="margin-bottom: 12px;">PROMPT</div>
+              <ul class="text-lg">
+                <li>寫一封信，寄完就丟</li>
+                <li>每次重新打</li>
+                <li>你給 AI 一個任務</li>
+              </ul>
+              <p class="text-muted" style="margin-top: 12px; font-size: 14pt;">
+                例：「請為橋頭糖廠寫教案」
+              </p>
+            </div>
+            <div class="box-orange">
+              <div class="text-xl text-orange font-bold" style="margin-bottom: 12px;">SKILL</div>
+              <ul class="text-lg">
+                <li>訂一個 SOP，永遠跟著用</li>
+                <li>寫一次，AI 一直照做</li>
+                <li>你給 AI 一份「流程說明書」</li>
+              </ul>
+              <p class="text-orange" style="margin-top: 12px; font-size: 14pt;">
+                例：「請用閱讀教案流程處理 X」
+              </p>
+            </div>
+          </div>
+          <div class="callout callout-green" style="margin-top: 25px;">
+            <p>下次打開 Claude，你只要說一句：<br>
+            <strong>「請用閱讀教案流程，為『左營眷村文化』產出國中跨領域閱讀教案。」</strong><br>
+            <span class="text-muted">→ 上傳素材 → 學習單＋教案兩份 docx 連續產出。<em>這就是 Lv.4。</em></span></p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           17. Section 2: Gemini CLI (Lv.3)
+           ============================================================ -->
+      <section id="section2-gemini-cli">
+        <div class="section-tag green">SECTION 2 — Lv.3</div>
+        <h2>把 AI 從瀏覽器拉出來</h2>
+        <div class="content">
+          <p class="text-muted text-lg">PART #1 跟 Section 1 的所有動作都還關在「網頁」裡——<strong>Lv.3 是把玻璃罩拿掉</strong></p>
+
+          <div class="box" style="margin-top: 20px; background: #1a1a1a; color: #f0f0f0; font-family: monospace; font-size: 14pt; padding: 25px;">
+            <div style="color: #888;"># 一句中文 prompt：</div>
+            <div style="margin-top: 12px;">桌面這堆檔案太亂了。請幫我：</div>
+            <div>1. 看一下有哪些檔案，按主題分類</div>
+            <div>2. 為每一類建一個子資料夾、把檔案移進去</div>
+            <div>3. 給每個資料夾用 macOS Finder 標籤上不同顏色</div>
+            <div>4. 完成後給我一份「整理報告」</div>
+          </div>
+
+          <p class="text-3xl text-green font-bold text-center" style="margin-top: 30px;">
+            90 秒後，桌面乾淨。
+          </p>
+          <p class="text-muted text-center" style="margin-top: 15px;">
+            重點不是整理桌面這件事——是<strong>「AI 出了瀏覽器、進入你的檔案系統」</strong>這個門檻。
+          </p>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           18. 升級階梯
+           ============================================================ -->
+      <section id="ladder">
+        <div class="section-tag">SECTION 3</div>
+        <h2>代理人：升級階梯總覽</h2>
+        <div class="content">
+          <div style="margin-top: 15px;">
+            <div class="ladder-row">
+              <div class="ladder-lv">Lv.1</div>
+              <div class="ladder-what">你會打 prompt</div>
+              <div class="ladder-demo">ChatGPT「先看 Lv.1 的限制」</div>
+            </div>
+            <div class="ladder-row">
+              <div class="ladder-lv">Lv.2</div>
+              <div class="ladder-what">你會把多個 AI 服務串起來用</div>
+              <div class="ladder-demo">PART #1 整套四步流程</div>
+            </div>
+            <div class="ladder-row highlight">
+              <div class="ladder-lv">Lv.3</div>
+              <div class="ladder-what"><strong>AI 替你跑完整個流程</strong></div>
+              <div class="ladder-demo">Section 2 Gemini CLI demo</div>
+            </div>
+            <div class="ladder-row highlight">
+              <div class="ladder-lv">Lv.4</div>
+              <div class="ladder-what"><strong>你訂規則、AI 一直照做</strong></div>
+              <div class="ladder-demo">Section 1 上傳 SKILL.zip</div>
+            </div>
+            <div class="ladder-row">
+              <div class="ladder-lv">Lv.5</div>
+              <div class="ladder-what">AI 規劃步驟＋操作電腦</div>
+              <div class="ladder-demo">推理解剖室 / OpenClaw / Hermes</div>
+            </div>
+          </div>
+          <p class="text-green font-bold" style="margin-top: 30px;">
+            每一層上去——「老師打字的時間」變少，「老師決定方向的時間」變多。
+          </p>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           19. 模型 - 怎麼辦到的
+           ============================================================ -->
+      <section id="how-models-work">
+        <div class="section-tag">SECTION 3 — 模型</div>
+        <h2>AI 怎麼辦到的（30 秒講完）</h2>
+        <div class="content">
+          <p class="text-2xl" style="margin-top: 10px;">
+            AI 不是查資料庫、不是「知道事實」。<br>
+            它的本質是 <strong>猜下一個字</strong>。
+          </p>
+
+          <div style="margin-top: 30px;">
+            <div class="callout callout-orange">
+              <strong>函數視角</strong>：輸入文字 → 模型計算 → 輸出最可能的下一段文字。沒有「記憶」。
+            </div>
+            <div class="callout callout-orange">
+              <strong>Token 視角</strong>：模型把文字切成「token」處理。中文一字約 1.5–2 token。
+            </div>
+            <div class="callout callout-orange">
+              <strong>幻覺的本質</strong>：模型在「猜」、不在「記」——寫得很像那回事的東西可能整個不存在。
+            </div>
+          </div>
+
+          <p class="text-xl text-green font-bold text-center" style="margin-top: 25px;">
+            → 凡有標準答案的學科，AI 產出 <em>必須</em> 老師最後把關。
+          </p>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           20. 怎麼選模型
+           ============================================================ -->
+      <section id="model-selection">
+        <div class="section-tag">SECTION 3 — 模型</div>
+        <h2>怎麼選模型？</h2>
+        <div class="content">
+          <p class="text-muted">以 Anthropic Claude 為例（其他家邏輯類似）</p>
+          <table style="margin-top: 15px;">
+            <thead>
+              <tr><th>模型</th><th>用在</th><th>額度成本</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Opus 4.7</strong></td>
+                <td>複雜分析、深度思考</td>
+                <td class="text-muted">高（5x Sonnet）</td>
+              </tr>
+              <tr>
+                <td><strong style="color: #FF5D03;">Sonnet 4.6</strong></td>
+                <td>嚴格照範本、多附件整合</td>
+                <td class="text-muted">中（基準）</td>
+              </tr>
+              <tr>
+                <td><strong style="color: #1E941F;">Haiku 4.5</strong></td>
+                <td>單純任務、快速產出</td>
+                <td class="text-muted">低（1/3 Sonnet）</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="box" style="margin-top: 25px;">
+            <div class="text-xl font-bold" style="margin-bottom: 8px;">對應今天的流程</div>
+            <ul class="text-lg">
+              <li>Step 4 教案（要照範本）→ <strong>Sonnet 4.6</strong></li>
+              <li>Step 3 學習單（單純）→ <strong style="color: #1E941F;">Haiku 4.5</strong></li>
+              <li>回家備課 → <strong style="color: #1E941F;">Haiku 為主</strong>，複雜時切 Sonnet</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           21. 不該丟雲端
+           ============================================================ -->
+      <section id="cloud-privacy">
+        <div class="section-tag">SECTION 3 — 你</div>
+        <h2>什麼東西不該丟雲端？</h2>
+        <div class="content">
+          <p class="text-2xl text-center" style="margin-top: 30px;">
+            學生作文・輔導紀錄・IEP・未公開競賽作品
+          </p>
+
+          <div class="callout callout-orange" style="margin-top: 35px; padding: 25px;">
+            <p class="text-2xl text-center" style="margin: 0;">
+              「這段如果被截圖貼到網路上，<br>
+              <strong>我會崩潰嗎？</strong>」
+            </p>
+          </div>
+
+          <p class="text-3xl text-green font-bold text-center" style="margin-top: 30px;">
+            會 → 別丟雲端。
+          </p>
+
+          <p class="text-muted text-center" style="margin-top: 25px;">
+            進階解法（點到為止）：本機 AI（Ollama + Llama / Gemma 等開源模型）跑在你筆電上，<strong>資料完全不外流</strong>。
+          </p>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           22. 三個帶走的觀念
+           ============================================================ -->
+      <section id="takeaways">
+        <div class="section-tag">收束</div>
+        <h2>三個帶走的觀念</h2>
+        <div class="content">
+          <div style="display: grid; grid-template-columns: 80px 1fr; gap: 25px 30px; margin-top: 30px; align-items: start;">
+            <div class="text-4xl text-orange font-bold">01</div>
+            <div>
+              <div class="text-2xl font-bold">AI 幫你加速，不是幫你代教</div>
+              <div class="text-muted text-lg" style="margin-top: 5px;">上課的還是你</div>
+            </div>
+
+            <div class="text-4xl text-orange font-bold">02</div>
+            <div>
+              <div class="text-2xl font-bold">你給 AI 多少「你的樣子」，它就回給你多少</div>
+              <div class="text-muted text-lg" style="margin-top: 5px;">你的教學風格、判斷，要寫進 prompt（或 Skill）</div>
+            </div>
+
+            <div class="text-4xl text-orange font-bold">03</div>
+            <div>
+              <div class="text-2xl font-bold">一定要自己檢查</div>
+              <div class="text-muted text-lg" style="margin-top: 5px;">尤其是引用、題目、史實——AI 會編</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           23. Q&A
+           ============================================================ -->
+      <section id="qa" class="section-divider" data-state="is-section-divider">
+        <h1>Q <span class="text-orange">&amp;</span> A</h1>
+        <p>綜合座談</p>
+        <p style="font-size: 13pt; margin-top: 60px;">
+          Yung Chin, Yen / TNFSH<br>
+          2026.05.07
+        </p>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+  <script>
+    Reveal.initialize({
+      width: 1280,
+      height: 720,
+      margin: 0,
+      controls: true,
+      progress: true,
+      slideNumber: 'c/t',
+      hash: true,
+      transition: 'fade',
+      transitionSpeed: 'fast',
+      center: false,
+    });
+  </script>
+</body>
+</html>

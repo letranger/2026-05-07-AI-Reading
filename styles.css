@@ -1,0 +1,518 @@
+/* AI 走進閱讀課——從陪聊到動手
+ * 2026-05-07 高雄市輔導團研習
+ * Style 參考使用者 cnn.pptx：橘紅 + 深綠 + 深灰
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Inter:wght@300;400;500;600&display=swap');
+
+:root {
+  /* Backgrounds */
+  --background-color: #ffffff;
+  --section-divider-bg: #f7f8fa;
+
+  /* Typography */
+  --heading-font: "Inter", "Noto Sans TC", "PingFang TC", sans-serif;
+  --body-font: "Inter", "Noto Sans TC", "PingFang TC", sans-serif;
+  --base-font-size: 32px;
+  --text-size: 18pt;
+  --h1-size: 44pt;
+  --h2-size: 32pt;
+  --h3-size: 22pt;
+  --footnote-size: 11pt;
+
+  /* Colors（cnn.pptx palette） */
+  --primary-color: #FF5D03;     /* 橘紅 — 強調、tag、裝飾線 */
+  --secondary-color: #1E941F;   /* 深綠 — 解法、成功、進階 */
+  --text-color: #53585F;        /* 主文深灰 */
+  --muted-color: #9FAABA;       /* 次要藍灰 */
+  --line-color: #FF5D03;
+
+  /* Layout */
+  --slide-padding: 70px;
+  --slide-padding-top: 50px;
+  --content-gap: 25px;
+
+  /* Boxes & Borders */
+  --box-radius: 4px;
+  --box-bg: #f7f8fa;
+  --box-border: #e1e5eb;
+  --accent-border-width: 5px;
+
+  /* Callout colors */
+  --blue: #4A90E2;
+  --blue-bg: #eef3fb;
+  --blue-border: #c8daf2;
+
+  --orange: #FF5D03;
+  --orange-bg: #fff1e8;
+  --orange-border: #ffd0b0;
+
+  --green: #1E941F;
+  --green-bg: #e8f5e9;
+  --green-border: #b3d9b4;
+
+  --gray: #9FAABA;
+  --gray-bg: #f3f5f8;
+  --gray-border: #d5dae0;
+}
+
+/* ===========================================
+   BASE STYLES
+   =========================================== */
+.reveal {
+  font-family: var(--body-font);
+  font-size: var(--base-font-size);
+}
+
+.reveal-viewport {
+  background-color: var(--background-color);
+}
+
+.reveal-viewport.is-section-divider .slide-background.present {
+  background-color: var(--section-divider-bg) !important;
+}
+
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4 {
+  font-family: var(--heading-font);
+  text-transform: none;
+  color: var(--text-color);
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.reveal h1 { font-size: var(--h1-size); }
+.reveal h2 { font-size: var(--h2-size); }
+.reveal h3 { font-size: var(--h3-size); }
+
+.reveal p,
+.reveal li,
+.reveal .callout,
+.reveal blockquote {
+  font-size: var(--text-size);
+  color: var(--text-color);
+  line-height: 1.55;
+}
+
+.reveal .callout p,
+.reveal .callout li,
+.reveal blockquote p {
+  font-size: inherit;
+}
+
+.reveal strong {
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+.reveal em {
+  color: var(--secondary-color);
+  font-style: normal;
+  font-weight: 500;
+}
+
+/* ===========================================
+   SLIDE LAYOUT
+   =========================================== */
+.reveal .slides section {
+  height: 100%;
+  display: flex !important;
+  flex-direction: column !important;
+  padding: var(--slide-padding-top) var(--slide-padding) var(--slide-padding) var(--slide-padding) !important;
+  box-sizing: border-box;
+  text-align: left;
+}
+
+.reveal .slides section.stack { padding: 0 !important; }
+
+.reveal .slides section > .content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-top: var(--content-gap);
+}
+
+.reveal .slides section > .footnote {
+  position: absolute;
+  bottom: 18px;
+  left: var(--slide-padding);
+  right: var(--slide-padding);
+  font-size: var(--footnote-size);
+  color: var(--muted-color);
+}
+
+/* Title underline accent */
+.reveal .slides section > h2 {
+  position: relative;
+  margin: 0;
+  padding-bottom: 15px;
+  flex-shrink: 0;
+}
+
+.reveal .slides section > h2::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 80px;
+  height: 4px;
+  background: var(--primary-color);
+}
+
+/* ===========================================
+   SECTION DIVIDERS
+   =========================================== */
+.reveal .slides section.section-divider {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  text-align: center;
+}
+
+.reveal .slides section.section-divider h1 {
+  font-size: 64pt;
+  font-weight: 700;
+  text-align: center;
+  margin: 0;
+}
+
+.reveal .slides section.section-divider p {
+  font-size: 22pt;
+  color: var(--muted-color);
+  margin-top: 15px;
+}
+
+/* Decorative line in section dividers */
+.reveal .slides section.section-divider::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 60px);
+  width: 100px;
+  height: 4px;
+  background: var(--primary-color);
+}
+
+/* ===========================================
+   SECTION TAG (top-left small label)
+   =========================================== */
+.section-tag {
+  position: absolute;
+  top: 30px;
+  left: var(--slide-padding);
+  font-size: 12pt;
+  font-weight: 600;
+  color: var(--primary-color);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.section-tag.green { color: var(--secondary-color); }
+.section-tag.gray { color: var(--muted-color); }
+
+/* ===========================================
+   TEXT UTILITIES
+   =========================================== */
+.text-lg { font-size: 20pt !important; }
+.text-xl { font-size: 24pt !important; }
+.text-2xl { font-size: 28pt !important; }
+.text-3xl { font-size: 36pt !important; }
+.text-4xl { font-size: 48pt !important; }
+
+.text-muted { color: var(--muted-color) !important; }
+.text-orange { color: var(--primary-color) !important; }
+.text-green { color: var(--secondary-color) !important; }
+.text-center { text-align: center !important; }
+.text-uppercase { text-transform: uppercase; letter-spacing: 0.1em; }
+.font-light { font-weight: 300; }
+.font-bold { font-weight: 600; }
+
+/* ===========================================
+   BOXES
+   =========================================== */
+.box {
+  background: var(--box-bg);
+  border: 1px solid var(--box-border);
+  border-radius: var(--box-radius);
+  padding: 18px 22px;
+  margin: 10px 0;
+}
+
+.box-outlined {
+  border: 1px solid var(--box-border);
+  border-radius: var(--box-radius);
+  padding: 18px 22px;
+  margin: 10px 0;
+}
+
+.box-orange {
+  border-top: 4px solid var(--primary-color);
+  background: var(--orange-bg);
+  padding: 18px 22px;
+  border-radius: 4px;
+}
+
+.box-green {
+  border-top: 4px solid var(--secondary-color);
+  background: var(--green-bg);
+  padding: 18px 22px;
+  border-radius: 4px;
+}
+
+/* ===========================================
+   CALLOUTS
+   =========================================== */
+.callout {
+  border-left: var(--accent-border-width) solid var(--primary-color);
+  padding: 14px 20px;
+  margin: 12px 0;
+  background: #fafbfc;
+  border-radius: 0 var(--box-radius) var(--box-radius) 0;
+}
+
+.callout-orange {
+  border-left-color: var(--orange);
+  background: var(--orange-bg);
+}
+
+.callout-green {
+  border-left-color: var(--green);
+  background: var(--green-bg);
+}
+
+.callout-gray {
+  border-left-color: var(--gray);
+  background: var(--gray-bg);
+}
+
+/* ===========================================
+   BIG STAGE (4-step flow)
+   =========================================== */
+.stage-card {
+  text-align: center;
+  padding: 25px 15px;
+  border-top: 4px solid var(--primary-color);
+  background: #fafbfc;
+  border-radius: 4px;
+}
+
+.stage-card.green { border-top-color: var(--secondary-color); }
+
+.stage-char {
+  font-size: 56pt;
+  font-weight: 700;
+  color: var(--primary-color);
+  line-height: 1;
+  margin-bottom: 15px;
+}
+
+.stage-card.green .stage-char { color: var(--secondary-color); }
+
+.stage-tool {
+  font-size: 14pt;
+  font-weight: 600;
+  color: var(--text-color);
+  margin: 8px 0 4px 0;
+}
+
+.stage-output {
+  font-size: 11pt;
+  color: var(--muted-color);
+}
+
+/* ===========================================
+   LADDER (升級階梯)
+   =========================================== */
+.ladder-row {
+  display: grid;
+  grid-template-columns: 80px 1fr 1.2fr;
+  gap: 20px;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--box-border);
+}
+
+.ladder-row.highlight {
+  background: var(--orange-bg);
+  margin: 0 -15px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-radius: 4px;
+  border-bottom: 1px solid var(--orange-border);
+}
+
+.ladder-lv {
+  font-size: 20pt;
+  font-weight: 700;
+  color: var(--text-color);
+}
+
+.ladder-row.highlight .ladder-lv {
+  color: var(--primary-color);
+}
+
+.ladder-what {
+  font-size: 16pt;
+  color: var(--text-color);
+}
+
+.ladder-demo {
+  font-size: 13pt;
+  color: var(--muted-color);
+}
+
+/* ===========================================
+   COVER SLIDE
+   =========================================== */
+.cover {
+  text-align: left;
+}
+
+.cover .author {
+  font-size: 12pt;
+  color: var(--muted-color);
+  letter-spacing: 0.05em;
+}
+
+.cover h1 {
+  font-size: 72pt;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.1;
+  color: var(--text-color);
+}
+
+.cover .subtitle {
+  font-size: 28pt;
+  color: var(--secondary-color);
+  font-weight: 500;
+  margin-top: 20px;
+}
+
+.cover .accent-line {
+  width: 120px;
+  height: 4px;
+  background: var(--primary-color);
+  margin: 30px 0;
+}
+
+.cover .meta {
+  font-size: 14pt;
+  color: var(--muted-color);
+  margin-top: 40px;
+  line-height: 1.8;
+}
+
+/* ===========================================
+   STEP NUMBER BADGE
+   =========================================== */
+.step-badge {
+  display: inline-block;
+  font-size: 11pt;
+  font-weight: 700;
+  color: var(--primary-color);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  border: 2px solid var(--primary-color);
+  border-radius: 100px;
+  padding: 4px 14px;
+  margin-bottom: 12px;
+}
+
+.step-badge.green { color: var(--secondary-color); border-color: var(--secondary-color); }
+
+/* ===========================================
+   QUOTE BLOCKS
+   =========================================== */
+.reveal blockquote {
+  border-left: 4px solid var(--primary-color);
+  padding-left: 24px;
+  margin: 20px 0;
+  font-style: normal;
+  background: none;
+  box-shadow: none;
+  width: 100%;
+  max-width: none;
+  font-size: 20pt;
+  color: var(--text-color);
+}
+
+.reveal blockquote cite {
+  display: block;
+  margin-top: 12px;
+  font-style: normal;
+  font-size: 13pt;
+  color: var(--muted-color);
+}
+
+/* ===========================================
+   TABLES
+   =========================================== */
+.reveal table {
+  border-collapse: collapse;
+  margin: 15px 0;
+  font-size: 16pt;
+  width: 100%;
+}
+
+.reveal table th {
+  background: var(--box-bg);
+  color: var(--muted-color);
+  font-weight: 600;
+  font-size: 13pt;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 10px 14px;
+  border-bottom: 2px solid var(--box-border);
+  text-align: left;
+}
+
+.reveal table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--box-border);
+  color: var(--text-color);
+}
+
+/* ===========================================
+   MISC
+   =========================================== */
+.reveal a {
+  color: var(--primary-color);
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+}
+
+.reveal code {
+  background: var(--box-bg);
+  padding: 2px 8px;
+  border-radius: 3px;
+  font-family: "SF Mono", Menlo, Monaco, monospace;
+  font-size: 14pt;
+  color: var(--secondary-color);
+}
+
+.reveal .progress {
+  color: var(--primary-color);
+  height: 4px;
+}
+
+.reveal .slide-number {
+  background: transparent;
+  color: var(--muted-color);
+  font-size: 11pt;
+  font-family: var(--body-font);
+}
+
+.reveal ul li,
+.reveal ol li {
+  margin-bottom: 8px;
+}
+
+.reveal ul li::marker {
+  color: var(--primary-color);
+}
