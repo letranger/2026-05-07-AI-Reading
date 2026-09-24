@@ -3,9 +3,9 @@
 :END:
 #+title: 從陪聊到動手——AI走進閱讀課
 # -*- org-export-babel-evaluate: nil -*-
-#+AUTHOR: 臺南一中 顏永進
+#+AUTHOR: 顏永進
 #+DATE: 2026-05-07
-#+SUBTITLE: 115 精進計畫｜高雄市輔導團研習：AI 應用在閱讀輔助力
+#+SUBTITLE: 115 精進計畫｜高雄市輔導團研習：AI 應用在閱讀輔助力 / 顏永進
 #+TAGS: AI, Reading, Teaching
 #+EXCLUDE_TAGS: noexport
 #+OPTIONS: toc:2 ^:nil num:5
@@ -13,6 +13,10 @@
 #+LATEX:\newpage
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/letranger/css@main/muse.css" />
 #+HTML_HEAD_EXTRA: <script src="https://cdn.jsdelivr.net/gh/letranger/css@main/copy_code.js"></script>
+#+begin_export html
+<a href="https://hits.sh/letranger.github.io/working/2026-05-7高市輔導團研習-AI與閱讀力/index.html/"><img align="right" alt="Hits" src="https://hits.sh/letranger.github.io/working/2026-05-7高市輔導團研習-AI與閱讀力/index.html.svg"/></a>
+#+end_export
+
 
 * 研習資訊
 
